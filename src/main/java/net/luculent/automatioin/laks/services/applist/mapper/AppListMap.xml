@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.luculent.automatioin.laks.services.applist.dao.AppListDao">
+
+    <sql id="baseColumnList">
+
+    </sql>
+
+    <select id="queryAppList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        web_name AS "name",
+        web_ico AS "ico",
+        web_link AS "link",
+        web_active AS "active"
+        FROM t_webmst
+        WHERE 1=1
+        AND is_delete = '0'
+        <if test="accessControl != null and accessControl!='' ">
+            AND access_control = #{accessControl}
+        </if>
+    </select>
+
+</mapper>
